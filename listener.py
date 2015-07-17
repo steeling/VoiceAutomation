@@ -1,10 +1,10 @@
 #!/usr/bin/python
 import speech_recognition as sr
+import time
 
 class Listener():
-  def __init__():
-    self.listen()
-
+  def __init__(self):
+    print "Starting up"
   def listen(self):
     with sr.Microphone() as source:                # use the default microphone as the audio source
       # r.adjust_for_ambient_noise(source)         # listen for 1 second to calibrate the energy threshold for ambient noise levels
@@ -16,15 +16,14 @@ class Listener():
     except LookupError:                            # speech is unintelligible
       print("Could not understand audio")
 
-
-def callback(recognizer, audio):                          # this is called from the background thread
-  try:
-    print(recognizer.recognize(audio))  # received audio data, now need to recognize it
-  except LookupError:
-    print("Oops! Didn't catch that")
-  finally:
-    self.stop_listening()
-    self.listen2()
+  def callback(self, recognizer, audio):                          # this is called from the background thread
+    try:
+      print "Looking up: "
+      print(recognizer.recognize(audio))  # received audio data, now need to recognize it
+    except LookupError:
+      print("Oops! Didn't catch that")
+    finally:
+      print "stopping"
 
   def listen2(self):
     r = sr.Recognizer()
@@ -33,8 +32,10 @@ def callback(recognizer, audio):                          # this is called from 
     self.stop_listening = r.listen_in_background(m, self.callback)
 
 def main():
-  Listener l = new Listener()
-
+  l = Listener()
+  l.listen2()
+  while(True):
+    time.sleep(1)
 if __name__ == "__main__":
   main()
 
