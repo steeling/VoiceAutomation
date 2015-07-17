@@ -18,13 +18,13 @@ class Listener():
 
 
 def callback(recognizer, audio):                          # this is called from the background thread
-    try:
-      print(recognizer.recognize(audio))  # received audio data, now need to recognize it
-    except LookupError:
-      print("Oops! Didn't catch that")
-    finally:
-      self.stop_listening()
-      self.listen2()
+  try:
+    print(recognizer.recognize(audio))  # received audio data, now need to recognize it
+  except LookupError:
+    print("Oops! Didn't catch that")
+  finally:
+    self.stop_listening()
+    self.listen2()
 
   def listen2(self):
     r = sr.Recognizer()
