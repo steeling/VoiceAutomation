@@ -7,17 +7,18 @@ class Listener():
     print "Starting up"
 
   def listen(self):
-    r = sr.Recognizer()  
-    print "Listening"
-    with sr.Microphone() as source:                # use the default microphone as the audio source
-      # r.adjust_for_ambient_noise(source)         # listen for 1 second to calibrate the energy threshold for ambient noise levels
+    while(True):
+      r = sr.Recognizer()  
+      print "Listening"
+      with sr.Microphone() as source:                # use the default microphone as the audio source
+        # r.adjust_for_ambient_noise(source)         # listen for 1 second to calibrate the energy threshold for ambient noise levels
 
-      audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
+        audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
 
-    try:
-      print(r.recognize(audio))                  # recognize speech using Google Speech Recognition
-    except LookupError:                            # speech is unintelligible
-      print("Could not understand audio")
+      try:
+        print(r.recognize(audio))                  # recognize speech using Google Speech Recognition
+      except LookupError:                            # speech is unintelligible
+        print("Could not understand audio")
 
   # def callback(self, recognizer, audio):                          # this is called from the background thread
   #   try:
